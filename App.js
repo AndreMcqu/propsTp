@@ -1,20 +1,30 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, ScrollView, Image } from 'react-native';
+import json from './tp.json';
+import Card from './card';
+
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <ScrollView style={styles.scrollView}>
+      <View style={styles.container}>
+        {json.map((data) => (
+          <View style={styles.element}>
+            <Card uriImg={{ uri: (data.img) }} titleImg={data.title} docImg={data.desc} />
+          </View>
+        ))}
+      </View>
+    </ScrollView>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    flex: 4,
     backgroundColor: '#fff',
-    alignItems: 'center',
     justifyContent: 'center',
+    padding: 5,
+    justifyContent: 'space-between',
+    marginTop: 40,
   },
 });
